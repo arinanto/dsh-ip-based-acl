@@ -254,6 +254,11 @@ Use `<type>(<scope>): <description>`:
   footer; that token keeps the spelling Conventional Commits requires, while the rest of the message
   stays lowercase.
 - No co-author lines, no AI attribution.
+- **Every commit is signed off (DCO).** Use `git commit --signoff` (`-s`); Git appends
+  `Signed-off-by: <user.name> <user.email>` from the local config. The trailer certifies the
+  [Developer Certificate of Origin 1.1](https://developercertificate.org/) claim — the author wrote the
+  change or may submit it under `AGPL-3.0-only`. It is not a co-author line and not AI attribution, so
+  it does not conflict with the rule above: keep it, and never sign off someone else's work.
 - **First commit only:** `initial: <description>`. `initial` is not a standard Conventional type;
   the owner approved it for the initial import of this repository, and it is not used again.
 

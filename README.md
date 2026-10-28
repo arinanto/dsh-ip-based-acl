@@ -146,6 +146,19 @@ Rules added for the Harness plugin layout:
 Not verified: installation into a live profile and the gate against a real browser session. The
 unit tests exercise the wrappers with a stub Connection, not the shipped plugin.
 
+## Contributing
+
+Every commit must carry a [Developer Certificate of Origin](https://developercertificate.org/) sign-off,
+so commit with `git commit --signoff` (`-s`). Git appends the trailer from your configured identity:
+
+```
+Signed-off-by: Your Name <you@example.com>
+```
+
+The trailer certifies the DCO 1.1 statement: you wrote the change, or you have the right to submit it
+under the project's license, [AGPL-3.0-only](LICENSE). Do not type it by hand for work you did not
+write, and do not drop it when rewriting or squashing commits.
+
 ## License
 
 Copyright (C) 2026 Rinaldi Widianto
