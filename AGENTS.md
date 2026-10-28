@@ -1,11 +1,10 @@
 # AGENTS.md — dsh-ip-based-acl
 
-> Project map for whoever picks this up next — future me, another agent, or a human. It records what
-> the code does, why a few unusual choices exist, and what will bite you. The owner's global rules in
-> `~/.dsh/AGENTS.md` still govern how work is done; this file adds project facts, not permissions.
-> If you do not have that global file: one reviewable step per turn, ask before dependencies or
-> destructive actions, never claim unverified behavior, and never commit or push without an explicit
-> yes.
+> Project map for whoever picks this up next — a returning maintainer, another agent, or a human. It
+> records what the code does, why a few unusual choices exist, and what will bite you. These are
+> project conventions, not permissions: work in one reviewable step per turn, ask before adding a
+> dependency or doing anything destructive, never claim unverified behavior, and never commit or push
+> without an explicit yes.
 
 ## What this is
 
@@ -20,7 +19,7 @@ exchanged.
 Status at the time of writing:
 
 - `pnpm check` green: **32 tests** (17 policy, 15 gate).
-- Not installed in `/home/rinaldi/.dsh/profiles/web`; the bundle exists only in this checkout.
+- Not installed in any live DSH profile; the bundle exists only in this checkout.
 - The repository is initialized on `main`; `origin` is
   `https://github.com/arinanto/dsh-ip-based-acl.git`. Do not commit or push without an explicit yes.
 - Live behavior with a real browser and a real reverse proxy is **unverified**; unit tests use stubs.
