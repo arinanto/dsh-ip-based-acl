@@ -38,6 +38,9 @@ Status at the time of writing:
 | `icon.svg`          | Hand-authored artwork: shield, `IP` monogram, pink heart                                    |
 | `lib/`              | Build output (`pnpm build`); **never edit by hand**, and rebuild before installing          |
 | `README.md`         | User-facing behavior, policy/proxy semantics, commands                                      |
+| `CONTRIBUTING.md`   | Setup, checks, commit rules, and how to report a bypass                                     |
+| `DCO`               | Developer Certificate of Origin 1.1 text, referenced by the sign-off rule                   |
+| `.github/workflows/` | CI: `ci.yml` runs `pnpm check` and `pnpm build` on push and pull request                   |
 
 Start here: `README.md` for semantics, then `src/gate.ts` for the request path, then `pnpm check`.
 
@@ -159,6 +162,8 @@ pnpm dev       # tsc --watch
   releases are outside the supported range even though the emitted `lib/` might run there.
 - `lib/` is generated and ignored by `.gitignore`, but it is what `install_bundle` links. Rebuild after
   every source change; never patch it.
+- CI (`.github/workflows/ci.yml`) runs `pnpm check` and `pnpm build` on every push to `main` and every
+  pull request, on Node 24 with the pnpm version pinned in `package.json`.
 - `package.json` ships `lib`, the patch, locale files, the icon, and the README. A new runtime module
   must be reachable from `lib/`; source files are not published.
 - Unit tests exercise policy and the wrappers with a **stub** Connection. There is no integration test
@@ -181,7 +186,7 @@ console.log(connection.admit({ socket: { remoteAddress: "203.0.113.7" } })); // 
 ## Icon and display metadata
 
 - `icon.svg` is hand-authored: the shield (unchanged from the original), a large white **IP** monogram,
-  and a small pink heart (`#f9a8d4`) in the upper-right. The heart is the "Alice" mark.
+  and a small pink heart (`#f9a8d4`) in the upper-right.
 - The Plugin Manager renders row icons at **30 px** (`ROW_ARTWORK_SIZE = 30`) and card/detail artwork at
   **36 px** (`CARD_ARTWORK_SIZE = 36`) in `@deepseek-ai/dsh-client-ui-plugin-manager`. Design for 30 px:
   big shapes only. The old keyhole and sparkle were removed because a second glyph cannot survive at
@@ -204,7 +209,7 @@ console.log(connection.admit({ socket: { remoteAddress: "203.0.113.7" } })); // 
 - Do not gate by shadowing routes or claiming the fallback seat; the wrapper seam is deliberate.
 - Do not add a runtime dependency on `@deepseek-ai/dsh-client-connection`; the structural wrapper is
   the point.
-- Do not edit `lib/`, and do not install/commit/push without an explicit yes from the owner.
+- Do not edit `lib/`, and do not install/commit/push without an explicit yes from the maintainer.
 - Every behavior change needs a test; every semantic change updates `README.md` and this file.
 
 ## Open work
@@ -238,7 +243,7 @@ client; and a direct client spoofing the header is refused. Restore any test sta
 
 ## Commit messages
 
-The owner enforces Conventional Commits strictly, with one house rule on top: **everything is
+This project enforces Conventional Commits strictly, with one house rule on top: **everything is
 lowercase** — type, scope, description, and acronyms (`ip`, `dsh`, `acl`).
 
 Use `<type>(<scope>): <description>`:
@@ -259,7 +264,7 @@ Use `<type>(<scope>): <description>`:
   change or may submit it under `AGPL-3.0-only`. It is not a co-author line and not AI attribution, so
   it does not conflict with the rule above: keep it, and never sign off someone else's work.
 - **First commit only:** `initial: <description>`. `initial` is not a standard Conventional type;
-  the owner approved it for the initial import of this repository, and it is not used again.
+  the maintainer approved it for the initial import of this repository, and it is not used again.
 
 Examples:
 

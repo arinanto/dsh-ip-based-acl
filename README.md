@@ -7,6 +7,37 @@ gate over Connection's admission, index, and connect entries, with `X-Forwarded-
 through configured proxies. The bundle has not been installed into a live profile, so the gate has
 not yet been exercised against a running Harness.
 
+## Install
+
+Node 24 or newer and pnpm are enough to build and test it: Cordis resolves from the Harness that loads
+the bundle at runtime, and from `devDependencies` for the local checks. `lib/` is generated rather than
+committed, so build before installing:
+
+```sh
+git clone https://github.com/arinanto/dsh-ip-based-acl.git
+cd dsh-ip-based-acl
+pnpm install
+pnpm build
+```
+
+Install that directory as a **bundle** in a DSH profile — the Harness Plugin Manager's install action,
+or the `plugin_manager` tool with `action: install_bundle` and the checkout's absolute path as
+`target`. It contributes one Host row, `ip-based-acl`, and ships it without config.
+
+Configure `allow` **before enabling the row**: the default is deny-everything, loopback included, so a
+row enabled with an empty list makes the web interface unreachable until you edit the profile patch and
+restart.
+
+```yaml
+- id: ip-based-acl
+  config:
+    allow: ["127.0.0.1", "::1"]
+    trustedProxies: []
+```
+
+A manual install is the same package link the Plugin Manager makes:
+`dsh plugin --profile <name> add <path-to-this-checkout>`, which forwards `pnpm add` inside the profile.
+
 ## Policy
 
 `allow` is an allowlist, and admission is default-deny.
@@ -90,6 +121,9 @@ implemented yet.
 | `locale/en.json`   | Plugin Manager title and description                                       |
 | `icon.svg`         | Original artwork exported as `./icon`                                      |
 | `lib/`             | Build output (`pnpm build`); never edited by hand                          |
+| `CONTRIBUTING.md`  | Setup, checks, commit rules, and how to report a bypass                    |
+| `DCO`              | Developer Certificate of Origin 1.1 text                                   |
+| `.github/workflows/` | CI: `pnpm check` and `pnpm build` on push and pull request               |
 
 ## Commands
 
@@ -158,6 +192,9 @@ Signed-off-by: Your Name <you@example.com>
 The trailer certifies the DCO 1.1 statement: you wrote the change, or you have the right to submit it
 under the project's license, [AGPL-3.0-only](LICENSE). Do not type it by hand for work you did not
 write, and do not drop it when rewriting or squashing commits.
+
+[CONTRIBUTING.md](CONTRIBUTING.md) has the rest: local setup, the checks CI runs, and the commit
+conventions. The DCO text itself is in [DCO](DCO).
 
 ## License
 
