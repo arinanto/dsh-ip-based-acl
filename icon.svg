@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="IP-based access control">
+  <path d="M32 4 55 12.5v17.75C55 44.5 45.4 55 32 60 18.6 55 9 44.5 9 30.25V12.5Z" fill="#1f2937" />
+  <path d="M32 10.5 49 16.75v13.5C49 40.6 41.6 49.3 32 53.75 22.4 49.3 15 40.6 15 30.25v-13.5Z" fill="#3b82f6" />
+  <text x="32" y="40.5" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="23" font-weight="800" letter-spacing="1" fill="#f9fafb">IP</text>
+  <path d="M43.5 22.2C42.05 20.9 40.37 19.8 40.14 18.35C39.9 16.95 41.18 16 42.28 16.6C42.92 16.95 43.27 17.47 43.5 17.88C43.73 17.47 44.08 16.95 44.72 16.6C45.82 16 47.1 16.95 46.86 18.35C46.63 19.8 44.95 20.9 43.5 22.2Z" fill="#f9a8d4" />
+</svg>

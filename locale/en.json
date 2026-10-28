@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "IP-Based ACL",
+    "description": "Refuses Harness web requests from peer addresses outside the configured allowlist."
+  }
+}

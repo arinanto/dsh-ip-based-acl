@@ -1,0 +1,13 @@
+# dsh-ip-based-acl bundle patch: one Host row, no Client half.
+#
+# The row id stays stable so a profile overrides `config` here instead of
+# restating the row; `name` is the package the bundle ships.
+#
+# The allowlist is default-deny and an empty list refuses every peer, loopback
+# included. Configure `allow` in the profile's patch before enabling this row,
+# or the web interface becomes unreachable until that patch is edited. When a
+# reverse proxy fronts the server, also configure `trustedProxies` so the
+# forwarded client is judged instead of the proxy.
+- insert:
+    - id: ip-based-acl
+      name: 'dsh-ip-based-acl'

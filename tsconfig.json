@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    /* Target Environment & Environment Libraries */
+    "target": "ES2025" /* Compiles to the JavaScript Node 24 runs natively. */,
+    "lib": ["ES2025"] /* Node-only project: no DOM types are wanted here. */,
+    "module": "nodenext" /* Emits native ES modules (import/export syntax). */,
+    "moduleResolution": "nodenext" /* Bundler-less: forces explicit file extensions in relative imports. */,
+    "types": ["node"],
+
+    /* Output Configuration
+       The base project only type-checks; `tsconfig.build.json` emits `lib/`. */
+    "noEmit": true,
+    "rootDir": ".",
+    "allowImportingTsExtensions": true /* Tests import `../src/policy.ts` straight from source. */,
+
+    /* Strict Type-Checking Rules */
+    "strict": true /* Activates all strict type-checking options. */,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* Advanced Strictness & Clean Code Rules */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true /* Safe element extraction from arrays/lists (returns T | undefined). */,
+    "noImplicitOverride": true,
+
+    /* Two rules the Harness plugin layout adds on top of the base style.
+       `erasableSyntaxOnly` keeps every source file runnable by Node's type
+       stripping, so `node --test` reads the same files the compiler reads.
+       `verbatimModuleSyntax` keeps type-only imports out of the emitted ESM. */
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+
+    /* Interoperability & Optimization */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "lib"]
+}

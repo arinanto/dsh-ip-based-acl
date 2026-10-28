@@ -1,0 +1,5 @@
+# Force standard copying instead of hardlinking across mounts
+packageImportMethod: copy
+
+# Prevent broken execution of cross-mount binary links
+preferSymlinkedExecutables: false

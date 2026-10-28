@@ -1,0 +1,8 @@
+# Ignore build outputs
+lib/
+
+# Ignore dependency directories (Prettier ignores node_modules by default, but it's good practice)
+node_modules/
+
+# Ignore generated lockfiles
+pnpm-lock.yaml
