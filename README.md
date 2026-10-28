@@ -2,6 +2,21 @@
 
 A DeepSeek Harness plugin bundle that gates the Harness web surface by peer IP address.
 
+> [!WARNING]
+> **Early project, not security-reviewed.** This is 0.1.x: the tests drive a stub Connection, the gate
+> has never run against a live Harness, and nobody has audited it. Treat it as an experiment that
+> works in the cases it tests, not as a boundary you can rely on — an address allowlist is one layer,
+> never a substitute for a firewall, a TLS-terminating proxy, or a VPN.
+>
+> **Do not expose DSH to the internet.** The Harness is powerful by design: it drives an agent with
+> access to the machine it runs on, able to read and write files, execute commands, and reach the
+> network. An instance reachable by someone you did not intend is, for practical purposes, remote code
+> execution on that host. This bundle decides which peer addresses reach the door; it does not make
+> public exposure safe. Misconfiguration cuts both ways: an empty `allow` locks everyone out, and a
+> `trustedProxies` entry that covers real clients lets a forged `X-Forwarded-For` through. Run it on
+> loopback or behind a private network — VPN, WireGuard, Tailscale, an SSH tunnel — and keep it off the
+> public internet.
+
 Status: **implemented, not installed**. The allowlist is compiled at activation and installed as a
 gate over Connection's admission, index, and connect entries, with `X-Forwarded-For` resolution
 through configured proxies. The bundle has not been installed into a live profile, so the gate has
